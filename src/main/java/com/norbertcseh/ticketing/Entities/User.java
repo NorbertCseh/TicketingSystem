@@ -15,11 +15,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import org.springframework.lang.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -50,16 +53,14 @@ public class User implements UserDetails {
     @Column(length = 100)
     private String password;
 
-    // @Transient
-    // @NotEmpty(message = "Please enter Password Confirmation")
-    // private String confirmPassword;
-
     @OneToOne(cascade = CascadeType.MERGE)
     private Profile profile;
 
-    // private List<Ticket> createdTickets;
+    @OneToMany
+    private List<Ticket> assignedTickets;
 
-    // private List<Ticket> assignedTickets;
+    @ManyToOne
+    private Project project;
 
     @NonNull
     @Column(nullable = false)

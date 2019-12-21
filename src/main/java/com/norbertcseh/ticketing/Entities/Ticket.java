@@ -2,41 +2,61 @@ package com.norbertcseh.ticketing.Entities;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import lombok.*;
+
 /**
  * Ticket
  */
+@Entity
+@RequiredArgsConstructor
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 public class Ticket {
 
+    @Id
+    @GeneratedValue
     private Long id;
 
-    private Boolean isExternal;
+    @NonNull
+    @ManyToOne
+    private Project project;
 
+    @NonNull
     private String ticketType;
 
+    @NonNull
     private String severity;
 
+    @NonNull
     private String priority;
 
+    @NonNull
     private String enviroment;
 
+    @NonNull
     private String title;
 
+    @NonNull
     private String description;
 
     private String affectedVersion;
 
     private String fixVersion;
 
-    private User reporter;
-
+    @ManyToOne
     private User assignedUser;
 
-    private List<String> attachments;
+    private String[] attachments;
 
-    private List<String> labels;
+    private String[] labels;
 
-    private List<Ticket> linkedTickets;
-
-    private List<Comment> comments;
+    // private List<Comment> comments;
 
 }

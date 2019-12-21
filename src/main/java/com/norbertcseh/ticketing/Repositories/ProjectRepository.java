@@ -1,13 +1,14 @@
 package com.norbertcseh.ticketing.Repositories;
 
-import com.norbertcseh.ticketing.Entities.Role;
+import com.norbertcseh.ticketing.Entities.Project;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * RoleRepository
+ * ProjectRepository
  */
 @Repository
-public interface RoleRepository extends JpaRepository<Role, Long> {
+public interface ProjectRepository extends JpaRepository<Project, Long> {
+
 }
