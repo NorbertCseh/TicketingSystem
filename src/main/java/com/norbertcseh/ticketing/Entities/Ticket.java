@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.*;
 
@@ -18,7 +19,7 @@ import lombok.*;
 @Setter
 @ToString
 @NoArgsConstructor
-public class Ticket {
+public class Ticket extends Auditable {
 
     @Id
     @GeneratedValue
@@ -57,6 +58,7 @@ public class Ticket {
 
     private String[] labels;
 
-    // private List<Comment> comments;
+    @OneToMany
+    private List<Comment> comments;
 
 }

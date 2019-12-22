@@ -18,7 +18,7 @@ import lombok.*;
 @Setter
 @ToString
 @NoArgsConstructor
-public class Project {
+public class Project extends Auditable {
 
     @Id
     @GeneratedValue

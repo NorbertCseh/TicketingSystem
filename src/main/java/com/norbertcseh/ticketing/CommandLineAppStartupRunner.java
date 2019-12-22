@@ -5,11 +5,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.norbertcseh.ticketing.Entities.Comment;
 import com.norbertcseh.ticketing.Entities.Profile;
 import com.norbertcseh.ticketing.Entities.Project;
 import com.norbertcseh.ticketing.Entities.Role;
 import com.norbertcseh.ticketing.Entities.Ticket;
 import com.norbertcseh.ticketing.Entities.User;
+import com.norbertcseh.ticketing.Repositories.CommentRepository;
 import com.norbertcseh.ticketing.Repositories.ProfileRepository;
 import com.norbertcseh.ticketing.Repositories.ProjectRepository;
 import com.norbertcseh.ticketing.Repositories.RoleRepository;
@@ -29,15 +31,18 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     UserRepository userRepository;
     TicketRepository ticketRepository;
     ProjectRepository projectRepository;
+    CommentRepository commentRepository;
 
     @Autowired
     public CommandLineAppStartupRunner(RoleRepository roleRepository, ProfileRepository profileRepository,
-            UserRepository userRepository, TicketRepository ticketRepository, ProjectRepository projectRepository) {
+            UserRepository userRepository, TicketRepository ticketRepository, ProjectRepository projectRepository,
+            CommentRepository commentRepository) {
         this.roleRepository = roleRepository;
         this.profileRepository = profileRepository;
         this.userRepository = userRepository;
         this.ticketRepository = ticketRepository;
         this.projectRepository = projectRepository;
+        this.commentRepository = commentRepository;
     }
 
     @Override
@@ -74,6 +79,17 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         tickets.add(ticket);
         project.setTickets(tickets);
         projectRepository.save(project);
+
+        Comment comment = new Comment("This is a comment komrades", ticket);
+        commentRepository.save(comment);
+        List<Comment> comments = new ArrayList<Comment>();
+        comments.add(comment);
+        ticket.setComments(comments);
+        ticketRepository.save(ticket);
+
+        user.setAssignedTickets(tickets);
+        userRepository.save(user);
+
     }
 
 }
