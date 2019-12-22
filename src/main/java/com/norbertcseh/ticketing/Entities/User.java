@@ -42,7 +42,7 @@ public class User implements UserDetails {
     private Long id;
 
     @NonNull
-    @Size(min = 8, max = 20)
+    @Size(min = 8, max = 50)
     @Column(nullable = false, unique = true)
     private String email;
 
@@ -56,6 +56,7 @@ public class User implements UserDetails {
     @OneToMany
     private List<Ticket> assignedTickets;
 
+    @NonNull
     @ManyToOne
     private Project project;
 
@@ -72,10 +73,12 @@ public class User implements UserDetails {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
 
-    @Override
-    public String getPassword() {
-        // TODO Auto-generated method stub
-        return null;
+    public void addRole(Role role) {
+        roles.add(role);
+    }
+
+    public void addRoles(Set<Role> roles) {
+        roles.forEach(this::addRole);
     }
 
     @Override

@@ -22,8 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-@Component
-
+//@Component
 public class CommandLineAppStartupRunner implements CommandLineRunner {
 
     RoleRepository roleRepository;
@@ -47,6 +46,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        Project project = new Project("OTP");
         Role role = new Role("Admin");
         roleRepository.save(role);
         Set<Role> roles = new HashSet<Role>();
@@ -55,14 +55,13 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         Profile profile = new Profile("Norbert Cseh", "NorbertCseh", "Company", "Position");
         profileRepository.save(profile);
 
-        User user = new User("email@gmail.com", "pass123123123", true);
+        User user = new User("email@gmail.com", "pass123123123", project, true);
         user.setProfile(profile);
         user.setRoles(roles);
         List<User> users = new ArrayList<User>();
         users.add(user);
         userRepository.save(user);
 
-        Project project = new Project("OTP");
         project.setUsers(users);
         projectRepository.save(project);
 
