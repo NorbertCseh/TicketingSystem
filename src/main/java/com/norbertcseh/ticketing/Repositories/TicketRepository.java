@@ -1,5 +1,7 @@
 package com.norbertcseh.ticketing.Repositories;
 
+import java.util.ArrayList;
+
 import com.norbertcseh.ticketing.Entities.Ticket;
 
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,5 +1,6 @@
 package com.norbertcseh.ticketing.Repositories;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import com.norbertcseh.ticketing.Entities.User;
@@ -14,5 +15,7 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByEmail(String email);
+
+    ArrayList<User> findAll();
 
 }
