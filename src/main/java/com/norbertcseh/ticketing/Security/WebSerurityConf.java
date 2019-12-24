@@ -6,16 +6,15 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
- * SecurityConfiguration
+ * WebSerurityConf
  */
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class WebSerurityConf extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().permitAll().and().formLogin().and().csrf().disable().headers()
-                .frameOptions().disable();
+        http.authorizeRequests().anyRequest().permitAll().and().formLogin().and().logout().and().csrf().disable()
+                .headers().frameOptions().disable();
     }
-
 }

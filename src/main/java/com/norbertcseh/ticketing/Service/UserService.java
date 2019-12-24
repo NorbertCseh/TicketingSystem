@@ -65,6 +65,7 @@ public class UserService {
         if (user.isPresent()) {
             return user.get();
         } else {
+            // TODO handle if there is no user with this id
             return null;
         }
 

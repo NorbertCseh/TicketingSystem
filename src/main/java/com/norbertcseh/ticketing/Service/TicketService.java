@@ -28,4 +28,9 @@ public class TicketService {
         return ticketRepository.findAll();
     }
 
+    public Ticket getTicketById(Long id) {
+        // TODO handle if there is no ticket with this id
+        return ticketRepository.findById(id).get();
+    }
+
 }
